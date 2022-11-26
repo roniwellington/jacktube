@@ -3,12 +3,35 @@ import Config from "../config.json";
 import styled from "styled-components";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline"
+import { videoService } from "../src/services/videoService";
 
 function HomePage() {
+    const service = videoService();
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
+    const [playlists, setPlaylists] = React.useState({})
+
+    React.useEffect(() => {
+        console.log("useEffect");
+        service
+            .getAllVideos()
+            .then((dados) => {
+                console.log(dados.data);
+                //forma imutavel
+                const novasPlaylists = { ...playlists }
+                dados.data.forEach((video) => {
+                    if (!novasPlaylists[video.playlist]) {novasPlaylists[video.playlist] = [];}
+                    novasPlaylists[video.playlist].push(video);
+                })
+                setPlaylists(novasPlaylists);
+            });
+    }, []);
+
+    console.log("playlist pronto", playlists)
+
+
 
     return (
-        <>       
+        <>
             <div style={{
                 display: "flex",
                 flexDirection: "column",
@@ -54,7 +77,7 @@ const StyledHeader = styled.div`
 
 const StyledBanner = styled.div`
     background-color: blue;
-    background-image: url(${({bg}) => bg});
+    background-image: url(${({ bg }) => bg});
     height: 230px;
 `
 function Header() {
