@@ -27,7 +27,7 @@ const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
 
 function getThumbnail(url) {
-    return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`
+    return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
 }
 
 export default function RegisterVideo() {

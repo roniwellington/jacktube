@@ -17,18 +17,17 @@ function HomePage() {
             .then((dados) => {
                 console.log(dados.data);
                 //forma imutavel
-                const novasPlaylists = { ...playlists }
+                const novasPlaylists = {}
                 dados.data.forEach((video) => {
                     if (!novasPlaylists[video.playlist]) {novasPlaylists[video.playlist] = [];}
-                    novasPlaylists[video.playlist].push(video);
+                    novasPlaylists[video.playlist] = [
+                        video,
+                        ...novasPlaylists[video.playlist],
+                    ];
                 })
                 setPlaylists(novasPlaylists);
             });
     }, []);
-
-    console.log("playlist pronto", playlists)
-
-
 
     return (
         <>
@@ -48,15 +47,6 @@ function HomePage() {
 }
 
 export default HomePage
-
-// function Menu() {
-//     return (
-//         <div>
-//             Menu
-//         </div>
-//     )
-// }
-
 
 const StyledHeader = styled.div`
     background-color: ${({ theme }) => theme.backgroundLevel1};
@@ -101,22 +91,22 @@ function Header() {
 }
 
 function Timeline({ searchValue, ...props }) {
-    // console.log("Dentro do componente", props.playlists)
     const playlistsNames = Object.keys(props.playlists)
 
     return (
         <StyledTimeline>
-            {playlistsNames.map((playlistsNames) => {
-                const videos = props.playlists[playlistsNames];
+            {playlistsNames.map((playlistsName) => {
+                const videos = props.playlists[playlistsName];
                 return (
-                    <section key={playlistsNames}>
-                        <h2>{playlistsNames}</h2>
+                    <section key={playlistsName}>
+                        <h2>{playlistsName}</h2>
                         <div>
                             {videos.filter((video) => {
                                 const titleNormalized = video.title.toLowerCase();
                                 const searchValueNormalized = searchValue.toLowerCase();
                                 return titleNormalized.includes(searchValueNormalized)
-                            }).map((video) => {
+                            })
+                            .map((video) => {
                                 return (
                                     <a key={video.url} href={video.url} >
                                         <img src={video.thumb} />
