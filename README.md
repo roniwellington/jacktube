@@ -7,7 +7,7 @@ A aplicação renderiza uma lista de vídeos do YouTube a partir de um **arquivo
 ---
 
 ## ✨ Funcionalidades
-- **Renderização dinâmica de vídeos** usando dados de um arquivo `videos.json`.
+- **Renderização dinâmica de vídeos** usando dados de um arquivo `json`.
 - **Barra de busca** para filtrar vídeos pelo título.
 - **Modo escuro (Dark Mode)** alternável.
 - **Formulário dinâmico**:
