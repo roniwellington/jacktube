@@ -1,4 +1,5 @@
-# 🎬 Aplicação React – YouTube Video Gallery
+# 🎬 Aplicação React – JackTube
+## 🎬 Aplicação React – YouTube Video Gallery
 
 Esta aplicação front-end foi desenvolvida para **estudar e praticar React**, explorando conceitos como **componentização, estados e eventos**.  
 A aplicação renderiza uma lista de vídeos do YouTube a partir de um **arquivo JSON** e oferece funcionalidades de busca, **modo escuro** e **cadastro de novos vídeos**.
